@@ -1,5 +1,5 @@
 FROM gliderlabs/alpine
-MAINTAINER Vlatko Kosturjak kost@kost.im
+MAINTAINER Blue Medora devops@bluemedora.com
 
 RUN apk --update add nmap && rm -f /var/cache/apk/*
 
