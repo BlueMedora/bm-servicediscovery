@@ -4,6 +4,12 @@ A Docker container for Nmap (23.95 MB).
 
 Image is based on the [gliderlabs/alpine](https://registry.hub.docker.com/u/gliderlabs/alpine/) base image
 
+## Docker build
+
+```
+docker build -t bluemedorapublic/bm-servicediscovery:0.0.1 .
+```
+
 ## Docker image size
 
 [![Latest](https://badge.imagelayers.io/k0st/nmap.svg)](https://imagelayers.io/?images=k0st/nmap:latest 'latest')
