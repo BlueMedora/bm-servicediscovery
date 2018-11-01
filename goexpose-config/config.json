@@ -1,0 +1,136 @@
+{
+  "host": "10.77.10.135",
+  "port": 9900,
+  "reload_env": true,
+  "endpoints": [
+    {
+      "path": "/info",
+      "methods": {
+        "GET": {
+          "type": "info",
+          "description": "Info task"
+        }
+      }
+    },
+    {
+      "path": "/shell",
+      "methods": {
+        "GET": {
+          "type": "shell",
+          "query_params": {
+            "return_params": true,
+            "params": [
+              {
+                "name": "shcmd"
+              }
+            ]
+          },
+          "config": {
+            "shell": "/bin/bash",
+            "commands": [
+              {
+                "command": "tmux send-keys -t 0 \"clear\" Enter",
+                "return_command": false
+              },
+              {
+                "command": "tmux send-keys -t 0 \"{{.query.shcmd}}\" Enter",
+                "return_command": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "/discover",
+      "methods": {
+        "GET": {
+          "type": "shell",
+          "query_params": {
+            "return_params": true,
+            "params": [
+              {
+                "name": "cidr"
+              }
+            ]
+          },
+          "config": {
+            "shell": "/bin/bash",
+            "commands": [
+              {
+                "command": "tmux send-keys -t 0 \"clear\" Enter",
+                "return_command": false
+              },
+              {
+                "command": "tmux send-keys -t 0 \"./discovernodes.sh {{.query.cidr}} | tee sqlnodes.txt\" Enter",
+                "return_command": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "/vrops",
+      "methods": {
+        "GET": {
+          "type": "shell",
+          "query_params": {
+            "return_params": true,
+            "params": [
+              {
+                "name": "cidr"
+              }
+            ]
+          },
+          "config": {
+            "shell": "/bin/bash",
+            "commands": [
+              {
+                "command": "tmux send-keys -t 0 \"clear\" Enter",
+                "return_command": false
+              },
+              {
+                "command": "tmux send-keys -t 0 \"./genvropsconfig.sh\" Enter",
+                "return_command": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "path": "/authsql",
+      "methods": {
+        "GET": {
+          "type": "shell",
+          "query_params": {
+            "return_params": true,
+            "params": [
+              {
+                "name": "username"
+	      },{
+		"name": "password"
+	      },{
+		"name": "domain"
+              }
+            ]
+          },
+          "config": {
+            "shell": "/bin/bash",
+            "commands": [
+              {
+                "command": "tmux send-keys -t 0 \"clear\" Enter",
+                "return_command": false
+              },
+              {
+                "command": "tmux send-keys -t 0 \"./authnodes.sh {{.query.username}} {{.query.password}} {{.query.domain}} | tee authsqlnodes.txt\" Enter",
+                "return_command": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

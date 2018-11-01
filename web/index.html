@@ -1,0 +1,94 @@
+<html>
+	<head>
+	</head>
+<body>
+	<iframe height="50%" width="100%" src="http://10.77.10.135:8080/"> </iframe>
+	<h1>Step 1: Discover Nodes</h1>
+	<form id="discover-form" action="#" onsubmit="return false">
+		<table>
+			<tr>
+				<td>
+					CIDR:
+		<input type="text" size=40 name="cidr">
+				</td>
+			</tr>
+			<tr><td>
+			<input type="Submit" value="Send">
+				</td></tr>
+		</table>
+	</form>
+	<h1>Step 2: Validate Creds</h1>
+	<form id="auth-form" action="#" onsubmit="return false">
+		<table>
+			<tr>
+				<td>
+					Username:
+		<input type="text" size=40 name="username">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Password:
+		<input type="text" size=40 name="password">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Domain:
+		<input type="text" size=40 name="domain">
+				</td>
+			</tr>
+			<tr><td>
+			<input type="Submit" value="Validate">
+				</td></tr>
+		</table>
+	</form>
+	<h1>Step 3: vROps Integration</h1>
+	<form id="vrops-form" action="#" onsubmit="return false">
+		<table>
+			<tr><td>
+			<input type="Submit" value="Import Into vROps">
+				</td></tr>
+		</table>
+
+
+	<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+	<script>
+		$(document).ready(function() {
+               $(document).on('submit', '#auth-form', function() {
+                      // do your things
+		       $.ajax({
+				url: 'http://10.77.10.135:9900/authsql',
+			       type: 'get',
+			       data: $("#auth-form").serialize(),
+		       } )
+                       return false;
+     } );
+               $(document).on('submit', '#discover-form', function() {
+                      // do your things
+		       $.ajax({
+				url: 'http://10.77.10.135:9900/discover',
+			       type: 'get',
+			       data: $("#discover-form").serialize(),
+		       } )
+                       return false;
+     } );
+               $(document).on('submit', '#vrops-form', function() {
+                      // do your things
+		       $.ajax({
+				url: 'http://10.77.10.135:9900/vrops',
+			       type: 'get',
+			       data: $("#vrops-form").serialize(),
+		       } )
+                       return false;
+     } );
+
+
+		
+		});
+
+	</script>
+</body>
+
+</html>
+
